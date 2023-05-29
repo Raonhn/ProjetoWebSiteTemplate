@@ -1,0 +1,221 @@
+<!-- <!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AquaTech | Simulador</title>
+
+    <script src="./js/funcoes.js"></script>
+
+    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    header inicio
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo">AquaTech</h1>
+            <ul class="navbar">
+                <li>
+                    <a href="./index.html">Inicial</a>
+                </li>
+                <li class="agora">Simulador</li>
+                <li>|</li>
+                <li>
+                    <a href="./login.html">Login</a>
+                </li>
+                <li>
+                    <a href="./login.html">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    simulador inicio
+    <div class="simulador">
+        <div class="container">
+            <h2>Simulador</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
+                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
+                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
+                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
+                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
+                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
+                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
+                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
+                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
+                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium tempora architecto sint fugit
+                dolorum? Ipsum laborum magnam similique labore, voluptate amet reprehenderit rem ab blanditiis quisquam
+                laboriosam eaque alias. Reiciendis. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Accusantium tempora architecto sint fugit dolorum? Ipsum laborum magnam similique labore, voluptate amet
+                reprehenderit rem ab blanditiis quisquam laboriosam eaque alias. Reiciendis.</p>
+
+        </div>
+    </div>
+    simulador fim
+
+    footer inicio
+    <div class="footer">
+        <div class="container">
+            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
+            <span class="version">v1.0.0</span>
+        </div>
+    </div>
+    footer fim
+
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="shortcut icon" href="assets/img/Logotipo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleCalc.css">
+    <script src="js/calc.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <nav class="navigation">
+            <div class="dropdown">
+                <button class="dropbtn">Calculadoras</button>
+                <div class="dropdown-content">
+                  <a onclick="abrir1()" href="#">Level up</a>
+                  <a onclick="abrir2()" href="#">Pity</a>
+                  <a onclick="abrir3()" href="#">Ascensão</a>
+                </div>
+            </div>
+            <a class="navborder" href="index.html">Home</a>
+            <a class="navborder" href="contato.html">Contato</a>
+            <a class="navborder" href="cadastro.html?#">Login</a>
+        </nav>
+    </div>
+
+    <section class="workplace">
+            <div id="confirmar" class="calc block">
+                <div class="column">
+                    <span class="icon-close" onclick="fechar()">
+                        <ion-icon name="close"></ion-icon>
+                    </span>
+                    <h2>Tip</h2>
+                    <div class="dentro_calc ">
+                        <p class="manual">Selecione uma calculadora para continuar.</p>
+                        <button onclick="abrir1()" class="btn_calc">Level up</button>
+                        <button onclick="abrir2()" class="btn_calc">Pity</button>
+                        <button onclick="abrir3()" class="btn_calc">Ascensão</button>
+                        <span class="miuda">Você pode abrir as outras calculadora no botão na Barra de Navegação.</span>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="calc1" class="calc">
+                <div class="column">
+                    <span class="icon-close" onclick="fechar1()">
+                        <ion-icon name="close"></ion-icon>
+                    </span>
+                    <h2>Level Up</h2>
+                    <div class="dentro_calc ">
+                        <p class="manual">Insira o nivel médio atual do seu personagem e para qual você quer o levar.</p>
+                        <span>De:<select id="lvl_atual">
+                            <option value="1">1</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                            <option value="60">60</option>
+                            <option value="70">70</option>
+                            <option value="80">80</option>
+                        </select> 
+                         Para:<select id="lvl_objetivo">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                            <option value="60">60</option>
+                            <option value="70">70</option>
+                            <option value="80">80</option>
+                            <option value="90">90</option>
+                        </select></span>
+                        <button onclick="calc_lvl()" class="btn_calc">Calcular</button>
+                        <span class="mensagem" id="mensagem1"></span>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div id="calc2" class="calc">
+                <div class="column">
+                    <span class="icon-close" onclick="fechar2()">
+                        <ion-icon name="close"></ion-icon>
+                    </span>
+                    <h2>Pity Calculator</h2>
+                    <div class="dentro_calc">
+                        <p class="manual">Insira qual a contagem atual de giro.</p>
+                        <span>Pity: <input id="id_pity" value="0" type="number" max="90" min="0"/></span>
+                        <button onclick="calc_pity()" class="btn_calc">Calcular</button>
+                        <span class="mensagem" id="mensagem2"></span>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div id="calc3" class="calc">
+                <div class="column">
+                    <span class="icon-close" onclick="fechar3()">
+                        <ion-icon name="close"></ion-icon>
+                    </span>
+                    <h2>Ascensão</h2>
+                    <div class="dentro_calc">
+                        <p class="manual">Insira o nivel atual de ascenção do personagem e até onde você quer elevar.</p>
+                        <span>De: <select id="asc_atual">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select> 
+                         Para: <select id="asc_objetivo">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select></span>
+                        <button onclick="calc_asc()" class="btn_calc">Calcular</button>
+                        <span class="mensagem" id="mensagem3"></span>
+                    </div>
+                    
+                </div>
+            </div>
+    </section>
+</body>
+</html>

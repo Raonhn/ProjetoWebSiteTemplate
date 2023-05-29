@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    
+    <head>
+        <!-- <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon"> -->
+        <!-- <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="dashboards.css"> -->
+        <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+        <!-- <link
+            href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"> -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genshin | Dashboard</title>
+
+
+    <script src="../js/funcoes.js"></script>
+    <link rel="shortcut icon" href="../assets/img/Logotipo.png" type="image/x-icon">
+    <script src="../js/dash.js"></script>
+    <link rel="stylesheet" href="../css/styleDash.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<!-- , atualizacaoPeriodica() -->
+
+<body onload="validarSessao(); ReceberDados(sessionStorage.ID_USUARIO); ReceberVotos()">
+    
+    <div class="navbar">
+        <nav class="navigation">
+            <a class="frente" href="../index.html">Home</a>
+            <div class="dropdown">
+                <button id="icone" class="dropbtn"><ion-icon height="40px" name="person-circle-outline"></ion-icon></button>
+                <div class="dropdown-content">
+                    <span id="perfil" href="#"></span>
+                    <a href="../simulador.html">Calculadora</a>
+                    <a onclick="limparSessao()" href="../cadastro.html?#">Sair</a>
+                </div>
+            </div>
+            <a href="../contato.html">Fale Comigo</a>
+        </nav>
+    </div>
+<div class="coluna">
+    <h1>Grafico de Pity</h1>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="div_mensagem1">Com base no seu resultado na calculadora, faltam <span id="gemas"></span> Primogens para chegar no pity de garantido.</div>
+</div>
+<div class="coluna maior">
+    <div class="row">
+    Time 1: 
+    <input class="inp_times" id="personagem1a">
+    <input class="inp_times" id="personagem2a">
+    <input class="inp_times" id="personagem3a">
+    <input class="inp_times" id="personagem4a">
+</div>
+<div class="row">
+    Time 2: 
+    <input class="inp_times" id="personagem1b">
+    <input class="inp_times" id="personagem2b">
+    <input class="inp_times" id="personagem3b">
+    <input class="inp_times" id="personagem4b">
+</div>
+<button class="btn_times" onclick="cadastrarTimes()">Registrar</button>
+<div class="coluna mini">
+    <h3>Time 1</h3>
+    <span id="a1personagem">Personagem</span>
+    <span id="a2personagem">Personagem</span>
+    <span id="a3personagem">Personagem</span>
+    <span id="a4personagem">Personagem</span>
+</div>
+<div class="coluna mini2">
+    <h3>Time 2</h3>
+    <span id="b1personagem">Personagem</span>
+    <span id="b2personagem">Personagem</span>
+    <span id="b3personagem">Personagem</span>
+    <span id="b4personagem">Personagem</span>
+</div>
+</div>
+<div class="coluna">
+    <div class="div_mensagem1">
+        Popularidade do Banner:
+    </div>
+    <div>
+        <canvas id="myChart2"></canvas>
+    </div>
+    <div class="div_mensagem2">
+        Você giraria no banner Atual?
+        <button onclick="votoSim()">Sim</button>
+        <button onclick="votoNão()">Não</button>
+    </div>
+</div>
+    
+</body>
+<script>
+    perfil.innerHTML = sessionStorage.NOME_USUARIO;
+    idUsuarioVar = sessionStorage.ID_USUARIO;
+    gemas.innerHTML = localStorage.gemas;
+    const pity = localStorage.pity;
+    var falta_pity = 90 - pity
+
+    const ctx = document.getElementById('myChart');
+
+    const chart = 
+    new Chart(ctx, { 
+        type: 'doughnut', // Aqui muda o tipo do gráfico, os mais comuns são 'line', 'bar', 'pizza', 'radio', 'doughnut' 
+        data: { 
+        labels: ['Faltam', 'Pity Atual'], // Aqui serve para definir quais são os dados que você quer guardar 
+        datasets: [{ 
+        label: 'Pity', // Aqui é mais para um nome geral 
+        data: [falta_pity, pity], // Dados das "labels", qualquer valor é "100%" você não precisa ter um somatório de 100 números para dar 100%, não é assim que porcentagem funciona, porcentagem é flexível e depende do seu valor final, se 50 for o total de coisas que você tem, logo ela é o seu 100%, metade disso (50%) seria 25 coisas 
+        backgroundColor: ['#808080','#80acff'], // Cor do fundo 
+        borderColor: ['#000000', '#000000'], // Cor da borda 
+        } ] 
+        }, 
+        options: { 
+        maintainAspectRatio: false, 
+        } 
+    });
+
+
+    function ReceberVotos() {
+        // aguardar();
+
+        fetch(`/medidas/tempo-real/`
+        ).then(function (resposta) {
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.VOTOSIM = json[0].voto;
+                    sessionStorage.VOTONAO = json[1].voto;
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    // finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    VotosNão = sessionStorage.VOTONAO;
+    VotosSim = sessionStorage.VOTOSIM;
+
+    const ctx2 = document.getElementById('myChart2');
+
+new Chart(ctx2, {
+  type: 'bar',
+  data: {
+    labels: ['Popularidade do Banner'],
+    datasets: [{
+      label: 'Sim',
+      data: [VotosSim],
+      backgroundColor: 'green', // Cor do fundo 
+      borderColor: '#000000'
+    },
+    {
+      label: 'Não',
+      data: [VotosNão],
+      backgroundColor: 'red', // Cor do fundo 
+      borderColor: '#000000'
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+});
+
+    function cadastrarTimes() {
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var Personagem1aVar = personagem1a.value;
+        var Personagem2aVar = personagem2a.value;
+        var Personagem3aVar = personagem3a.value;
+        var Personagem4aVar = personagem4a.value;
+
+        var Personagem1bVar = personagem1b.value;
+        var Personagem2bVar = personagem2b.value;
+        var Personagem3bVar = personagem3b.value;
+        var Personagem4bVar = personagem4b.value;
+
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrarTimes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                Personagem1aServer: Personagem1aVar,
+                Personagem2aServer: Personagem2aVar,
+                Personagem3aServer: Personagem3aVar,
+                Personagem4aServer: Personagem4aVar,
+                Personagem1bServer: Personagem1bVar,
+                Personagem2bServer: Personagem2bVar,
+                Personagem3bServer: Personagem3bVar,
+                Personagem4bServer: Personagem4bVar,
+                idUsuarioServer: idUsuarioVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                setTimeout(() => {
+                    window.location = "cards.html";
+                }, "2000")
+
+                limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+
+
+    function ReceberDados(idUsuario) {
+        // aguardar();
+
+        fetch(`/medidas/tempo-real/${idUsuario}`
+        ).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.PERSONAGEM1A = json[0].Personagem1;
+                    sessionStorage.PERSONAGEM2A = json[0].Personagem2;
+                    sessionStorage.PERSONAGEM3A = json[0].Personagem3;
+                    sessionStorage.PERSONAGEM4A = json[0].Personagem4;
+
+                    sessionStorage.PERSONAGEM1B = json[1].Personagem1;
+                    sessionStorage.PERSONAGEM2B = json[1].Personagem2;
+                    sessionStorage.PERSONAGEM3B = json[1].Personagem3;
+                    sessionStorage.PERSONAGEM4B = json[1].Personagem4;
+
+                    implantar();
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    // finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function votoSim() {
+        var VotosSimVar = 'Sim'
+        fetch("/usuarios/cadastrarVoto", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                VotoServer: VotosSimVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                setTimeout(() => {
+                    window.location = "cards.html";
+                }, "2000")
+
+                limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function votoNão() {
+        var VotosNãoVar = 'Não'
+        fetch("/usuarios/cadastrarVoto", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                VotoServer: VotosNãoVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                setTimeout(() => {
+                    window.location = "cards.html";
+                }, "2000")
+
+                limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+    
+    function implantar() {
+        a1personagem.innerHTML = `${sessionStorage.PERSONAGEM1A}`
+        a2personagem.innerHTML = `${sessionStorage.PERSONAGEM2A}`
+        a3personagem.innerHTML = `${sessionStorage.PERSONAGEM3A}`
+        a4personagem.innerHTML = `${sessionStorage.PERSONAGEM4A}`
+        b1personagem.innerHTML = `${sessionStorage.PERSONAGEM1B}`
+        b2personagem.innerHTML = `${sessionStorage.PERSONAGEM2B}`
+        b3personagem.innerHTML = `${sessionStorage.PERSONAGEM3B}`
+        b4personagem.innerHTML = `${sessionStorage.PERSONAGEM4B}`
+    }
+
+    </script>
+    
+    </html>

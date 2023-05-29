@@ -1,0 +1,151 @@
+section.slider{
+    margin: 0;
+    width: 100vw;
+    height: auto;
+    padding: 0;
+    overflow: hidden;
+    /* border-bottom: #daa520 2px solid; */
+
+}
+
+.conteudo{
+    width: 400vw;
+    height: auto;
+    display: flex;
+}
+
+.conteudo input{
+    display: none;
+}
+
+.slide-caixa, .primeiro {
+    width: 25%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    transition: all 1s ease-in;
+}
+
+.slide-caixa img{
+    width: 100vw;
+    height: auto;
+}
+
+.passar_manual, .passar_auto {
+    position: absolute;
+    width: 100%;
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    z-index: 98;
+}
+
+.passar_manual .btn_manual, 
+.passar_auto div {
+    border: 1px solid #ffffffa9;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.7s;
+    background-color: transparent;
+}
+
+.passar_manual .btn_manual:not(:last-child), 
+.passar_auto div:not(:last-child) {
+    margin-right: 10px;
+}
+
+.passar_manual .btn_manual:hover {
+    background-color: #ffffffa9;
+}
+
+#slide0:checked ~ .passar_auto .passarbtn0, 
+#slide1:checked ~ .passar_auto .passarbtn1, 
+#slide2:checked ~ .passar_auto .passarbtn2,
+#slide3:checked ~ .passar_auto .passarbtn3, 
+#slide4:checked ~ .passar_auto .passarbtn4{
+    background-color: #ffffffa9;
+}
+
+
+#slide0:checked ~ .primeiro {
+    margin-left: 0%;
+}
+#slide1:checked ~ .primeiro {
+    margin-left: -25%;
+}
+#slide2:checked ~ .primeiro {
+    margin-left: -50%;
+}
+#slide3:checked ~ .primeiro {
+    margin-left: -75%;
+}
+#slide4:checked ~ .primeiro {
+    margin-left: -100%;
+}
+
+.texto_slide {
+    font-size: 75px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    max-width: 20.5%;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    z-index: 80;
+    /* backdrop-filter: blur(20px); */
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.13);
+    box-shadow: goldenrod 3px 3px 6px;
+}
+
+/* #slide0:checked ~ .primeiro {
+    margin: 0%;
+}
+#slide1:checked ~ .primeiro {
+    margin: -12.5%;
+}
+#slide2:checked ~ .primeiro {
+    margin: -25%;
+}
+#slide3:checked ~ .primeiro {
+    margin: -37.5%;
+}
+#slide4:checked ~ .primeiro {
+    margin: -50%;
+} */
+
+/* #lide0 {
+    display: none;
+}
+#lide1 {
+    display: none;
+}
+#lide2 {
+    display: none;
+}
+#lide3 {
+    display: none;
+}
+#lide4 {
+    display: none;
+}
+
+#slide0:checked ~ #lide0 {
+    display: block;
+}
+#slide1:checked ~ #lide1 {
+    display: block;
+}
+#slide2:checked ~ #lide2 {
+    display: block;
+}
+#slide3:checked ~ #lide3 {
+    display: block;
+}
+#slide4:checked ~ #lide4 {
+    display: block;
+} */
+
+
+
