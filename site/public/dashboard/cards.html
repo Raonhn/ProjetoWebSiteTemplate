@@ -47,8 +47,30 @@
     <div>
         <canvas id="myChart"></canvas>
     </div>
+    <a onclick="abrir()" class="pequenininho">
+        Não está aparecendo Grafico? Use a calculadora de pity! Clique aqui!
+    </a>
+    <div id="calc" class="calc">
+        <div class="column">
+            <span class="icon-close" onclick="fechar()">
+                <ion-icon name="close"></ion-icon>
+            </span>
+            <h2>Pity Calculator</h2>
+            <div class="dentro_calc">
+                <p class="manual">Insira qual a contagem atual de giro.</p>
+                <span>Pity: <input id="id_pity" value="0" type="number" max="90" min="0"/></span>
+                <button onclick="calc_pity()" class="btn_calc">Calcular</button>
+                <span class="mensagem" id="mensagem"></span>
+            </div>  
+        </div>
+    </div>
+
     <div class="div_mensagem1">Com base no seu resultado na calculadora, faltam <span id="gemas"></span> Primogens para chegar no pity de garantido.</div>
 </div>
+
+
+
+
 <div class="coluna maior">
     <div class="row">
     Time 1: 
@@ -92,6 +114,7 @@
         <button onclick="votoSim()">Sim</button>
         <button onclick="votoNão()">Não</button>
     </div>
+    <span class="pequenininho" onclick="recarregar()">Não esta aparecendo nada no grafico? Clique aqui!</span>
 </div>
     
 </body>
@@ -102,6 +125,8 @@
     const pity = localStorage.pity;
     var falta_pity = 90 - pity
 
+
+    function GraficoPity() {
     const ctx = document.getElementById('myChart');
 
     const chart = 
@@ -120,7 +145,7 @@
         maintainAspectRatio: false, 
         } 
     });
-
+}
 
     function ReceberVotos() {
         // aguardar();
@@ -137,6 +162,8 @@
 
                     sessionStorage.VOTOSIM = json[0].voto;
                     sessionStorage.VOTONAO = json[1].voto;
+
+                    GraficoVotos()
 
                 });
 
@@ -156,11 +183,16 @@
 
         return false;
     }
+    function GraficoVotos() {
+        VotosNão = sessionStorage.VOTONAO;
+        VotosSim = sessionStorage.VOTOSIM;
 
-    VotosNão = sessionStorage.VOTONAO;
-    VotosSim = sessionStorage.VOTOSIM;
+        CriarGrafico()
+    }
 
-    const ctx2 = document.getElementById('myChart2');
+function CriarGrafico() {
+
+const ctx2 = document.getElementById('myChart2');
 
 new Chart(ctx2, {
   type: 'bar',
@@ -168,13 +200,13 @@ new Chart(ctx2, {
     labels: ['Popularidade do Banner'],
     datasets: [{
       label: 'Sim',
-      data: [VotosSim],
+      data: [sessionStorage.VOTOSIM],
       backgroundColor: 'green', // Cor do fundo 
       borderColor: '#000000'
     },
     {
       label: 'Não',
-      data: [VotosNão],
+      data: [sessionStorage.VOTONAO],
       backgroundColor: 'red', // Cor do fundo 
       borderColor: '#000000'
     }]
@@ -187,6 +219,7 @@ new Chart(ctx2, {
     }
   }
 });
+}
 
     function cadastrarTimes() {
 
@@ -230,7 +263,7 @@ new Chart(ctx2, {
 
                 setTimeout(() => {
                     window.location = "cards.html";
-                }, "2000")
+                }, "1000")
 
                 limparFormulario();
                 // finalizarAguardar();
@@ -260,15 +293,15 @@ new Chart(ctx2, {
                     console.log(json);
                     console.log(JSON.stringify(json));
 
-                    sessionStorage.PERSONAGEM1A = json[0].Personagem1;
-                    sessionStorage.PERSONAGEM2A = json[0].Personagem2;
-                    sessionStorage.PERSONAGEM3A = json[0].Personagem3;
-                    sessionStorage.PERSONAGEM4A = json[0].Personagem4;
+                    sessionStorage.PERSONAGEM1A = json[1].Personagem1;
+                    sessionStorage.PERSONAGEM2A = json[1].Personagem2;
+                    sessionStorage.PERSONAGEM3A = json[1].Personagem3;
+                    sessionStorage.PERSONAGEM4A = json[1].Personagem4;
 
-                    sessionStorage.PERSONAGEM1B = json[1].Personagem1;
-                    sessionStorage.PERSONAGEM2B = json[1].Personagem2;
-                    sessionStorage.PERSONAGEM3B = json[1].Personagem3;
-                    sessionStorage.PERSONAGEM4B = json[1].Personagem4;
+                    sessionStorage.PERSONAGEM1B = json[0].Personagem1;
+                    sessionStorage.PERSONAGEM2B = json[0].Personagem2;
+                    sessionStorage.PERSONAGEM3B = json[0].Personagem3;
+                    sessionStorage.PERSONAGEM4B = json[0].Personagem4;
 
                     implantar();
 
@@ -311,7 +344,7 @@ new Chart(ctx2, {
 
                 setTimeout(() => {
                     window.location = "cards.html";
-                }, "2000")
+                }, "500")
 
                 limparFormulario();
                 // finalizarAguardar();
@@ -346,7 +379,7 @@ new Chart(ctx2, {
 
                 setTimeout(() => {
                     window.location = "cards.html";
-                }, "2000")
+                }, "500")
 
                 limparFormulario();
                 // finalizarAguardar();
@@ -370,8 +403,14 @@ new Chart(ctx2, {
         b2personagem.innerHTML = `${sessionStorage.PERSONAGEM2B}`
         b3personagem.innerHTML = `${sessionStorage.PERSONAGEM3B}`
         b4personagem.innerHTML = `${sessionStorage.PERSONAGEM4B}`
-    }
 
+        VotosNão = sessionStorage.VOTONAO;
+        VotosSim = sessionStorage.VOTOSIM;
+
+        GraficoPity()
+
+    }
+    
     </script>
     
     </html>

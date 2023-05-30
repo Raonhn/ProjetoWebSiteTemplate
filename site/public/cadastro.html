@@ -33,7 +33,7 @@
         </span>
         <div class="form-box login">
             <h2>Login</h2>
-            <form action="#">
+            <div action="#">
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="mail"></ion-icon>
@@ -56,12 +56,12 @@
                 <div class="login-register">
                     <p>Não tem uma conta? <a href="#" class="register-link">Registrar</a></p>
                 </div>
-            </form>
+            </div>
         </div>
 
         <div class="form-box register">
             <h2>Registrar</h2>
-            <form action="#">
+            <div action="#">
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="person"></ion-icon>
@@ -90,7 +90,7 @@
                 <div class="login-register">
                     <p>Já tem uma conta? <a href="#" class="login-link">Login</a></p>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -104,20 +104,18 @@
 
 <script>
     function cadastrar() {
-        // aguardar();
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
         var nomeVar = nome_input_cad.value;
         var emailVar = email_input_cad.value;
         var senhaVar = senha_input_cad.value;
-        // var confirmacaoSenhaVar = confirmacao_senha_input.value; || confirmacaoSenhaVar == ""
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
-            // finalizarAguardar();
+            
             return false;
         }
         else {
@@ -151,13 +149,13 @@
                 }, "2000")
 
                 limparFormulario();
-                // finalizarAguardar();
+                
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
+            
         });
 
         return false;
@@ -177,7 +175,7 @@
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            // finalizarAguardar();
+            
             return false;
         }
         else {

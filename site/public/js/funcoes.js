@@ -25,6 +25,12 @@ function limparSessao() {
     window.location = "../login.html";
 }
 
+function recarregar() {
+    setTimeout(() => {
+        window.location = "cards.html";
+    }, "250")
+}
+
 // carregamento (loading)
 // function aguardar() {
 //     var divAguardar = document.getElementById("div_aguardar");
