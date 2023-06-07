@@ -14,7 +14,8 @@ function validarSessao() {
 
         // finalizarAguardar();
     } else {
-        window.location = "../login.html";
+        alert("Você não está logado, redirecionando para a pagina de login.")
+        window.location = "../cadastro.html";
     }
 }
 
@@ -22,7 +23,15 @@ function limparSessao() {
     // aguardar();
     sessionStorage.clear();
     // finalizarAguardar();
-    window.location = "../login.html";
+    window.location = "../cadastro.html";
+}
+
+function avisoSaindo() {
+    sessionStorage.clear();
+    saindo.classList.add('block')
+    setTimeout(() => {
+        window.location = "../index.html";
+    }, "3000")
 }
 
 function recarregar() {

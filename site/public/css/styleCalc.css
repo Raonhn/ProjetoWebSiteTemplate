@@ -126,7 +126,7 @@ section.workplace {
     top: 0;
     left: 65vw;
     /* width: 100%; */
-    padding: 5px 100px;
+    padding: 5px 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -208,4 +208,23 @@ section.workplace {
   #confirmar .dentro_calc span{
     font-size: xx-small;
     margin-top: 10px;
+  }
+
+  .saindo{
+    display: none;
+    position: absolute;
+    z-index: -1;
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    border: black 3px solid;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    left: 41vw;
+  }
+
+  .block {
+    display: block;
+    z-index: 9999;
   }

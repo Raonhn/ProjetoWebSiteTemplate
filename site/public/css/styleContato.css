@@ -179,3 +179,22 @@
     padding: 10px;
     font-size: 18px;
 }
+
+.saindo{
+    display: none;
+    position: absolute;
+    z-index: -1;
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    border: black 3px solid;
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    left: 41vw;
+    color: white;
+  }
+  .block {
+    display: block;
+    z-index: 9999;
+  }

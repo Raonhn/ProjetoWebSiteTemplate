@@ -27,19 +27,21 @@
 <!-- , atualizacaoPeriodica() -->
 
 <body onload="validarSessao(); ReceberDados(sessionStorage.ID_USUARIO); ReceberVotos()">
-    
+    <div id="saindo" class="saindo">
+        Deslogando e redirecionando a pagina inicial.
+    </div>
     <div class="navbar">
         <nav class="navigation">
-            <a class="frente" href="../index.html">Home</a>
+            <a class="frente" onclick="avisoSaindo()">Home</a>
             <div class="dropdown">
                 <button id="icone" class="dropbtn"><ion-icon height="40px" name="person-circle-outline"></ion-icon></button>
                 <div class="dropdown-content">
                     <span id="perfil" href="#"></span>
-                    <a href="../simulador.html">Calculadora</a>
+                    <a href="calc.html">Calculadora</a>
                     <a onclick="limparSessao()" href="../cadastro.html?#">Sair</a>
                 </div>
             </div>
-            <a href="../contato.html">Fale Comigo</a>
+            <a href="contato.html">Fale Comigo</a>
         </nav>
     </div>
 <div class="coluna">
@@ -191,7 +193,6 @@
     }
 
 function CriarGrafico() {
-
 const ctx2 = document.getElementById('myChart2');
 
 new Chart(ctx2, {
@@ -216,6 +217,7 @@ new Chart(ctx2, {
       y: {
         beginAtZero: true
       }
+
     }
   }
 });
