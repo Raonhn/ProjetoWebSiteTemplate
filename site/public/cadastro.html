@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="assets/img/Logotipo.png" type="image/x-icon">
         <script src="./js/funcoes.js"></script>
     </head>
-    <body>
+    <body onload="validarSessao2()">
 
         <div class="alerta_erro" id="cardErro">
                 <span id="mensagem_erro"></span>
@@ -49,7 +49,7 @@
                     <label>Senha</label>
                 </div>
                 <div class="remember-forgot">
-                    <label><input type="checkbox">Lembre de mim</label>
+                    <label><input id="lembre" type="checkbox">Lembre de mim</label>
                     <a href="contato.html">Esqueceu a senha?</a>
                 </div>
                 <button onclick="entrar()" type="submit" class="btn">Login</button>
@@ -84,7 +84,7 @@
                     <label>Senha</label>
                 </div>
                 <div class="remember-forgot">
-                    <label><input type="checkbox">Eu concordo com os termos & condições</label>
+                    <span><input id="termos" type="checkbox">Eu concordo com os <a id="termosCondições" onclick="visualizarTermos()">termos & condições</a></span>
                 </div>
                 <button onclick="cadastrar()" type="submit" class="btn">Registrar</button>
                 <div class="login-register">
@@ -101,7 +101,6 @@
 </body>
 
 </html>
-
 <script>
     function cadastrar() {
 
@@ -117,10 +116,12 @@
 
             
             return false;
+        } else if(termos.checked == false) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Por favor, aceite os termos e condições antes de continuar";
         }
         else {
             setInterval(sumirMensagem, 10000)
-        }
 
         // Enviando o valor da nova input
         fetch("/usuarios/cadastrar", {
@@ -160,6 +161,7 @@
 
         return false;
     }
+}
 
     function sumirMensagem() {
         cardErro.style.display = "none"
@@ -208,6 +210,12 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.idUsuario;
 
+                    if(lembre.checked == true) {
+                        localStorage.setItem('EMAIL_USUARIO', json.email);
+                        localStorage.setItem('NOME_USUARIO', json.nome);
+                        localStorage.setItem('ID_USUARIO', json.idUsuario);
+                    }
+
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
                     }, 1000); // apenas para exibir o loading
@@ -233,6 +241,12 @@
 
     function sumirMensagem() {
         cardErro.style.display = "none"
+    }
+
+    function visualizarTermos() {
+        cardErro.style.display = "block"
+        cardErro.innerHTML = `Ao assinar esses termos eu garanto que não causarei problemas, não hackearei o site e serei responsavel jogando genshin impact.`
+        setTimeout(sumirMensagem, 10000)
     }
 
 </script>

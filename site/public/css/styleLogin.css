@@ -273,3 +273,8 @@ header {
     backdrop-filter: blur(10px);
     display: none;
 }
+
+#termosCondições {
+    /* text-decoration: none; */
+    cursor: pointer;
+}
