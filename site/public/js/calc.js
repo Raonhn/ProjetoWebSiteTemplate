@@ -142,7 +142,7 @@ function calc_pity() {
     } else if(pity == 90) {
         mensagem2.innerHTML = `Estranho...<br>Ou você pegou um 5* agora e seu pity é 0 ou o numero inserido foi errado.`
     } else {
-        mensagem2.innerHTML = `Faltam giros ${calc} para seu 5* garantido, e com isso são ${gemas} primogens para chegar lá. <img src="assets/img/Primogem.webp" height="30px" width="30px">`
+        mensagem2.innerHTML = `Faltam giros ${calc} para seu 5* garantido, e com isso são ${gemas} primogens para chegar lá. <img src="../assets/img/Primogem.webp" height="30px" width="30px">`
 
         localStorage.setItem('pity', pity);
         localStorage.setItem('gemas', gemas);

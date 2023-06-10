@@ -124,7 +124,7 @@
     perfil.innerHTML = sessionStorage.NOME_USUARIO;
     idUsuarioVar = sessionStorage.ID_USUARIO;
     gemas.innerHTML = localStorage.gemas;
-    const pity = localStorage.pity;
+    var pity = localStorage.pity;
     var falta_pity = 90 - pity
 
 
@@ -166,6 +166,7 @@
                     sessionStorage.VOTONAO = json[1].voto;
 
                     GraficoVotos()
+                    GraficoPity()
 
                 });
 
@@ -397,6 +398,7 @@ new Chart(ctx2, {
     }
     
     function implantar() {
+
         a1personagem.innerHTML = `${sessionStorage.PERSONAGEM1A}`
         a2personagem.innerHTML = `${sessionStorage.PERSONAGEM2A}`
         a3personagem.innerHTML = `${sessionStorage.PERSONAGEM3A}`
@@ -409,7 +411,6 @@ new Chart(ctx2, {
         VotosNão = sessionStorage.VOTONAO;
         VotosSim = sessionStorage.VOTOSIM;
 
-        GraficoPity()
 
     }
     
