@@ -170,7 +170,7 @@
     transform: translateY(-20px);
 }
 
-.contactForm .inputBox input[type="submit"] {
+.contactForm .inputBox button {
     width: 100px;
     background: #00bcd4;
     color: #fff;
