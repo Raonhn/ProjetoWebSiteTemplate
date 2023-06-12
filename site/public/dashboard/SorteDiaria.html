@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorte Diaria</title>
+    <link rel="stylesheet" href="../css/styleSorte.css">
+    <link rel="shortcut icon" href="../assets/img/Logotipo.png" type="image/x-icon">
+    <script src="../js/funcoes.js"></script>
+</head>
+<body onload="random_MSG(); validarSessao()">
+    <div id="saindo" class="saindo">
+        Deslogando e redirecionando a pagina inicial.
+    </div>
+    <div class="navbar">
+        <nav class="navigation">
+            <a class="frente" onclick="avisoSaindo()">Home</a>
+            <div class="dropdown">
+                <button id="icone" class="dropbtn"><ion-icon height="40px" name="person-circle-outline"></ion-icon></button>
+                <div class="dropdown-content">
+                    <span id="perfil" href="#"></span>
+                    <a href="calc.html">Calculadora</a>
+                    <a href="contato.html">Fale Comigo</a>
+                    <a onclick="limparSessao()" href="../cadastro.html?#">Sair</a>
+                </div>
+            </div>
+            <a href="cards.html">Dashboard</a>
+        </nav>
+    </div>
+
+    <div id="msg" class="msg block">
+        <div class="column">
+            <h2>Omamori <img src="../assets/img/omamori.png" height="25px"></h2>
+            <div class="dentro_msg">
+                Hoje sua Sorte é:
+                <span class="mensagem" id="mensagem"></span>
+            </div>  
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
+<script>
+
+    var msgs = [
+        'Muita Má Sorte, <br>Sinto muito, hoje realmente não é seu dia de sorte',
+        'Má Sorte, <br>Sinto Muito, você não terá sorte hoje',
+        'Nula, <br>O dia hoje vai passar despercebido',
+        'Sorte, <br>Hoje será um bom dia',
+        'Muita Sorte, <br>Hoje seu dia será muito bom!!!!'
+    ]
+
+    function random_MSG() {
+        sorteHoje = parseInt(Math.random()*5);
+
+        mensagem.innerHTML = msgs[sorteHoje]
+    }
+
+</script>
