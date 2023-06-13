@@ -134,14 +134,14 @@
 
     const chart = 
     new Chart(ctx, { 
-        type: 'doughnut', // Aqui muda o tipo do gráfico, os mais comuns são 'line', 'bar', 'pizza', 'radio', 'doughnut' 
+        type: 'doughnut',
         data: { 
-        labels: ['Faltam', 'Pity Atual'], // Aqui serve para definir quais são os dados que você quer guardar 
+        labels: ['Faltam', 'Pity Atual'],
         datasets: [{ 
-        label: 'Pity', // Aqui é mais para um nome geral 
-        data: [falta_pity, pity], // Dados das "labels", qualquer valor é "100%" você não precisa ter um somatório de 100 números para dar 100%, não é assim que porcentagem funciona, porcentagem é flexível e depende do seu valor final, se 50 for o total de coisas que você tem, logo ela é o seu 100%, metade disso (50%) seria 25 coisas 
-        backgroundColor: ['#808080','#80acff'], // Cor do fundo 
-        borderColor: ['#000000', '#000000'], // Cor da borda 
+        label: 'Pity',
+        data: [falta_pity, pity], // qualquer valor é "100%" por exemplo 50, metade disso (50%) seria 25 coisas 
+        backgroundColor: ['#808080','#80acff'],
+        borderColor: ['#000000', '#000000'],
         } ] 
         }, 
         options: { 
@@ -151,7 +151,6 @@
 }
 
     function ReceberVotos() {
-        // aguardar();
 
         fetch(`/medidas/tempo-real/`
         ).then(function (resposta) {
@@ -177,7 +176,6 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    // finalizarAguardar(texto);
                 });
             }
 
@@ -270,13 +268,11 @@ new Chart(ctx2, {
                 }, "1000")
 
                 limparFormulario();
-                // finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
         });
 
         return false;
@@ -284,7 +280,6 @@ new Chart(ctx2, {
 
 
     function ReceberDados(idUsuario) {
-        // aguardar();
 
         fetch(`/medidas/tempo-real/${idUsuario}`
         ).then(function (resposta) {
@@ -317,7 +312,6 @@ new Chart(ctx2, {
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    // finalizarAguardar(texto);
                 });
             }
 
@@ -351,13 +345,11 @@ new Chart(ctx2, {
                 }, "500")
 
                 limparFormulario();
-                // finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
         });
 
         return false;
@@ -386,13 +378,11 @@ new Chart(ctx2, {
                 }, "500")
 
                 limparFormulario();
-                // finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
         });
 
         return false;
