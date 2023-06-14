@@ -16,3 +16,8 @@ function proximaImg() {
 
     document.getElementById('slide'+ contador).checked = true
 }
+
+
+function voltar() {
+    window.location = `../index.html`
+}
